@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <style>
+        body {
+          padding: 2rem;
+        }
+        .material-icons {
+          cursor: pointer;
+        }
+        #toggle {
+          margin-bottom: 1em;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="buttonDiv">
+      </div>
+      <div id="toggle" class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+        <label id="class-toggle" for="class" class="btn btn-secondary">
+          <input type="radio" id="class" autocomplete="off"> Class
+        </label>
+        <label id="homework-toggle" for="homework" class="btn btn-secondary">
+          <input type="radio" id="homework" autocomplete="off"> Homework
+        </label>
+      </div>
+      <ul id="class-list" class="list-group"></ul>
+      <ul id="homework-list" class="list-group" style="display:none"></ul>
+      <a href="form.html">Add a new item</a>
+
+    </body>
+    <script src="options.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </html>
