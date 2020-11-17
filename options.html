@@ -2,36 +2,76 @@
   <html>
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-      <style>
-        body {
-          padding: 2rem;
-        }
-        .material-icons {
-          cursor: pointer;
-        }
-        #toggle {
-          margin-bottom: 1em;
-        }
-      </style>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
     </head>
     <body>
-      <div id="buttonDiv">
+      <div class="row">
+        <div class="col-md m-1">
+          <div class="d-flex justify-content-center"><h1 class="badge align-self-center">Classes</h1></div>
+          <div id="class-container"><ul id="class-list" class="list-group"></ul></div>
+          <form id="class-form" method="POST">
+            <div class="form-group">
+              <label for="title" class="form-label">Title:</label>
+              <input class="form-control" name="title" type="text" placeholder="CMPT 101">
+              <label for="link" class="form-label">URL link:</label>
+              <input class="form-control" name="link" type="url" placeholder="Include http:// in the URL format">
+            </div>
+            <div class="form-check">
+              <p>Days of the week:</p>
+              <input type="checkbox" id="monday" name="day" value=1 class="form-check-input">
+              <label for="monday" class="form-check-label">Monday</label><br>
+              <input type="checkbox" id="tuesday" name="day" value=2 class="form-check-input">
+              <label for="tuesday" class="form-check-label">Tuesday</label><br>
+              <input type="checkbox" id="wednesday" name="day" value=3 class="form-check-input">
+              <label for="wednesday" class="form-check-label">Wednesday</label><br>
+              <input type="checkbox" id="thursday" name="day" value=4 class="form-check-input">
+              <label for="thursday" class="form-check-label">Thursday</label><br>
+              <input type="checkbox" id="friday" name="day" value=5 class="form-check-input">
+              <label for="friday" class="form-check-label">Friday</label><br>
+            </div>
+            <div class="form-group">
+              <label for="start" class="form-label">Start Time:</label>
+              <input class="form-control" name="start" type="time">
+              <label for="end" class="form-label">End Time:</label>
+              <input class="form-control" name="end" type="time">
+            </div>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div class="d-flex justify-content-center"><span class="material-icons add-circle align-self-center" id="class-button">add_circle</span></div>
+        </div>
+        <div class="col-md m-1">
+          <div class="d-flex justify-content-center"><h1 class="badge align-self-center">Homework</h1></div>
+          <div id="homework-container"><ul id="homework-list" class="list-group"></ul></div>
+          <form id="homework-form">
+            <div class="form-group">
+              <label for="title" class="form-label">Title:</label>
+              <input class="form-control" name="title" type="text" placeholder="CMPT 101 Exercises">
+              <label for="link" class="form-label">URL link:</label>
+              <input class="form-control" name="link" type="url" placeholder="Include http:// in the URL format">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <div class="d-flex justify-content-center"><span class="material-icons add-circle align-self-center" id="homework-button">add_circle</span></div>
+        </div>
+        <div class="col-md m-1">
+          <div class="d-flex justify-content-center"><h1 class="badge align-self-center">Pins</h1></div>
+          <div id="pin-container"><ul id="pin-list" class="list-group"></ul></div>
+          <form id="pin-form">
+            <div class="form-group">
+              <label for="title" class="form-label">Title:</label>
+              <input class="form-control" name="title" type="text" placeholder="My Calendar">
+              <label for="link" class="form-label">URL link:</label>
+              <input class="form-control" name="link" type="url" placeholder="Include http:// in the URL format">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <div class="d-flex justify-content-center"><span class="material-icons add-circle align-self-center" id="pin-button">add_circle</span></div>
+        </div>
       </div>
-      <div id="toggle" class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
-        <label id="class-toggle" for="class" class="btn btn-secondary">
-          <input type="radio" id="class" autocomplete="off"> Class
-        </label>
-        <label id="homework-toggle" for="homework" class="btn btn-secondary">
-          <input type="radio" id="homework" autocomplete="off"> Homework
-        </label>
-      </div>
-      <ul id="class-list" class="list-group"></ul>
-      <ul id="homework-list" class="list-group" style="display:none"></ul>
-      <a href="form.html">Add a new item</a>
-
     </body>
+    <script src="view.js"></script>
+    <script src="storage.js"></script>
     <script src="options.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -1,20 +1,25 @@
-chrome.storage.sync.get(['homeworkData', 'classData'], function(result) {
+chrome.storage.sync.get(['homeworkData', 'classData', 'pinData'], function(result) {
   const homeworkContainer = document.getElementById('homework');
   const classButton = document.getElementById('class');
   const date = new Date();
 
   for(homeworkObj of result.homeworkData) {
     const button = document.createElement('button');
-    button.className = "btn btn-info";
+    button.className = "btn btn-primary";
     button.innerText = homeworkObj.title;
     button.onclick = function() { chrome.tabs.create({ url: homeworkObj.link }); };
     homeworkContainer.appendChild(button);
   }
 
+  document.getElementById('pin-button').onclick = function() {
+    for(pinObj of result.pinData) {
+        chrome.tabs.create({url: pinObj.link, pinned: true});
+    }
+  }
+
   for(classObj of result.classData) {
     const classLink = timeForClass(date, classObj); // check if there is a class currently
     if(classLink) {
-      homeworkContainer.style.display = 'none';
       classButton.style.display = 'block';
       classButton.onclick = function() { chrome.tabs.create({url: classObj.link }); }
     }

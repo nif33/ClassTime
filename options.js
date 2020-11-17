@@ -1,57 +1,27 @@
-let classes = [];
-let homework = [];
-const classButton = document.getElementById('class-toggle');
-const homeworkButton = document.getElementById('homework-toggle');
 const classList = document.getElementById('class-list');
 const homeworkList = document.getElementById('homework-list');
+const pinList = document.getElementById('pin-list');
+const classForm = document.getElementById('class-form');
+const homeworkForm = document.getElementById('homework-form');
+const pinForm = document.getElementById('pin-form');
+let classes = [];
+let homework = [];
+let pins = [];
+getData();
 
-classButton.onclick = function() {
-  classList.style.display = 'block';
-  homeworkList.style.display = 'none';
-}
-homeworkButton.onclick = function() {
-  classList.style.display = 'none';
-  homeworkList.style.display = 'block';
-}
+document.getElementById('class-button').onclick = function() { showForm(this, classForm); }
+document.getElementById('homework-button').onclick = function() { showForm(this, homeworkForm); }
+document.getElementById('pin-button').onclick = function() { showForm(this, pinForm); }
 
-chrome.storage.sync.get(['homeworkData', 'classData'], function(result) {
-  if(result.classData != undefined) {
-    classes = result.classData;
-  }
-  if(result.homeworkData != undefined) {
-    homework = result.homeworkData;
-  }
-  populateList(classList, classes);
-  populateList(homeworkList, homework);
-});
+classForm.onsubmit = function() { recordForm(makeClass(this), classes) }
+homeworkForm.onsubmit = function() { recordForm(makeHomework(this), homework) }
+pinForm.onsubmit = function() { recordForm(makePin(this), pins) }
 
-function populateList(list, data) {
-  for(obj of data) {
-    const item = document.createElement('li');
-    item.className = 'list-group-item';
-    item.innerText = obj.link;
-    item.appendChild(newDeleteIcon(data));
-    list.appendChild(item);
+function recordForm(item, list) {
+  if(list.length < 12) {
+    list.push(item);
+    storeData();
+  } else {
+    alert("Maximum links reached.")
   }
-}
-
-// TODO: current deletion does not allow users to use a link more than once
-function newDeleteIcon(data) {
-  const icon = document.createElement('span');
-  icon.className = 'material-icons';
-  icon.innerText = 'close';
-  icon.onclick = function() {
-    for(obj of data) {
-      if(obj.link+'close' == icon.parentElement.innerText) {
-        data.splice(data.indexOf(obj), 1);
-        break;
-      }
-    }
-    chrome.storage.sync.set({homeworkData: homework}, function() {
-      chrome.storage.sync.set({classData: classes}, function() {
-        icon.parentElement.remove();
-      });
-    });
-  }
-  return icon;
 }

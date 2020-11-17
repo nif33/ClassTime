@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+:root {
+  --main: #618BF5;
+  --accent: #FF5A5F;
+  --background: #E4E4E4;
+}
+
+html, body {
+  font-family: 'Open Sans';
+}
+
+form {
+  background-color: white;
+  padding: 1em;
+  position: absolute;
+  bottom: 12vh;
+  left: 2em;
+  right: 2em;
+  border-style: solid;
+  border-radius: 0.2em;
+  border-color: var(--background);
+  display: none;
+}
+
+.badge {
+  font-size: 18pt;
+  font-weight: lighter;
+  margin: 1em;
+  width: 8em;
+  color: white;
+  background-color: var(--main);
+}
+
+.btn-primary {
+  background-color: var(--main);
+}
+.btn-secondary {
+  background-color: var(--accent);
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.col-md {
+  background-color: var(--background);
+  height: 100vh;
+  position: relative;
+}
+
+.material-icons {
+  cursor: pointer;
+  color: var(--main);
+  user-select: none;
+}
+.material-icons:hover {
+  color: var(--main);
+}
+.material-icons.add-circle {
+  font-size: 48px;
+  color: var(--main);
+}
+.material-icons.close {
+  font-size: 24px;
+  display: none;
+}
+
+#class-container, #homework-container, #pin-container {
+  height: 80vh;
+}
+
+#popup {
+  padding: 0.3em 0em;
+}
