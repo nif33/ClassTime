@@ -2,6 +2,11 @@ chrome.storage.sync.get(['homeworkData', 'classData', 'pinData'], function(resul
   const homeworkContainer = document.getElementById('homework');
   const classButton = document.getElementById('class');
   const date = new Date();
+  console.log(result)
+
+  if(storage_empty(result)) {
+    showAddOptions(homeworkContainer);
+  }
 
   for(homeworkObj of result.homeworkData) {
     const button = document.createElement('button');
@@ -12,6 +17,7 @@ chrome.storage.sync.get(['homeworkData', 'classData', 'pinData'], function(resul
   }
 
   document.getElementById('pin-button').onclick = function() {
+    console.log('clicked pin')
     for(pinObj of result.pinData) {
         chrome.tabs.create({url: pinObj.link, pinned: true});
     }
@@ -25,6 +31,22 @@ chrome.storage.sync.get(['homeworkData', 'classData', 'pinData'], function(resul
     }
   }
 });
+
+function storage_empty(result) {
+  return !result.classData.length && !result.homeworkData.length;
+}
+
+function showAddOptions(element) {
+  const text = document.createElement('p');
+  const options = document.createElement('button');
+  text.innerText = 'Add a class in the Options page';
+  text.className = 'text-center';
+  options.innerText = 'Go to Options';
+  options.onclick = function() { chrome.runtime.openOptionsPage() };
+  options.className = "btn btn-primary";
+  element.appendChild(text);
+  element.appendChild(options);
+}
 
 function timeForClass(date, classObj) {
   // TODO: there must be a prettier way to do this...

@@ -59,7 +59,6 @@ function newDeleteIcon(obj, list) {
   icon.innerText = 'close';
   icon.onclick = function() {
       list.splice(list.indexOf(obj), 1);
-      console.log(list);
       storeData();
   }
   return icon;
