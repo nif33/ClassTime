@@ -17,16 +17,16 @@ chrome.storage.sync.get(['homeworkData', 'classData', 'pinData'], function(resul
   }
 
   document.getElementById('pin-button').onclick = function() {
-    console.log('clicked pin')
     for(pinObj of result.pinData) {
         chrome.tabs.create({url: pinObj.link, pinned: true});
     }
   }
 
   for(classObj of result.classData) {
-    const classLink = timeForClass(date, classObj); // check if there is a class currently
-    if(classLink) {
+    const currentClass = timeForClass(date, classObj); // check if there is a class currently
+    if(currentClass) {
       classButton.style.display = 'block';
+      classButton.innerText = 'Go to ' + classObj.title;
       classButton.onclick = function() { chrome.tabs.create({url: classObj.link }); }
     }
   }
@@ -57,7 +57,7 @@ function timeForClass(date, classObj) {
   if(classObj.day.includes(date.getDay().toString()) &&
     date >= startTime &&
     date <= endTime) {
-      return classObj.link;
+      return classObj;
   }
   return false;
 }
