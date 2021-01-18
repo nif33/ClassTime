@@ -12,18 +12,38 @@ function showForm(button, form) {
 
 function populateList(element, list) {
   for(obj of list) {
-    const item = document.createElement('li');
-    const text = document.createElement('span');
-    const icon = newDeleteIcon(obj, list);
-    text.className = 'align-top';
-    item.className = 'list-group-item';
-    text.innerText = obj.title;
-    item.appendChild(text);
-    item.appendChild(icon);
-    item.onmouseover = function() { icon.style.display = 'block'; }
-    item.onmouseout = function() { icon.style.display = 'none'; }
+    item = makeListItem(obj, list);
+    item.dataset.target = '#collapseExample';
+    item.dataset.toggle = 'collapse';
+    collapse = makeItemCollapse(obj, list);
     element.appendChild(item);
+    element.appendChild(collapse);
   }
+}
+
+function makeListItem(obj, list) {
+  const item = document.createElement('li');
+  const text = document.createElement('span');
+  const icon = newDeleteIcon(obj, list);
+  text.className = 'align-top';
+  item.className = 'list-group-item';
+  text.innerText = obj.title;
+  item.appendChild(text);
+  item.appendChild(icon);
+  item.onmouseover = function() { icon.style.display = 'block'; }
+  item.onmouseout = function() { icon.style.display = 'none'; }
+  return item;
+}
+
+function makeItemCollapse(obj, list) {
+  const collapse = document.createElement('div');
+  const card = document.createElement('div');
+  collapse.id = "collapseExample";
+  collapse.className = "collapse";
+  card.className = "card card-body";
+  card.innerText = "example text";
+  collapse.appendChild(card);
+  return collapse;
 }
 
 function makeClass(formElement) {
